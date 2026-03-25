@@ -104,10 +104,6 @@ src
       └── Main.java
 ▶️ How to Run the Project
 
-1️⃣ Clone the repository
-
-git clone https://github.com/your-username/your-repository.git
-
 2️⃣ Open the project in your IDE (IntelliJ or VS Code)
 
 3️⃣ Run the main class
