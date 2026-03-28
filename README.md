@@ -1,127 +1,86 @@
-This project is a command-line Java application that allows users to consult the average vehicle price using the FIPE API.
+Aqui está o README.md completo e profissional para o seu projeto FIPE Cars Consultant.
 
-The application simulates the workflow of the official FIPE website, allowing the user to select a vehicle type, brand, and model, returning the price information for all available years of that model.
+Este modelo destaca a interatividade do terminal e o uso da Stream API, que são pontos fortes de projetos Java de linha de comando.
 
-The project was built focusing on API consumption, JSON deserialization, and collection manipulation in Java.
+Markdown
+# FIPE Vehicle Consultant
 
-📌 Technologies Used
-Java
-Spring Boot
-Maven
-Jackson (JSON processing)
-REST API
-Scanner (terminal input)
-⚙️ Features
+![Java](https://img.shields.io/badge/Java-17%2B-orange?style=for-the-badge&logo=openjdk)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?style=for-the-badge&logo=springboot)
+![API](https://img.shields.io/badge/REST%20API-Consumptions-blue?style=for-the-badge&logo=postman)
 
-The application allows the user to:
+Uma aplicação interativa de linha de comando (CLI) desenvolvida em **Java** e **Spring Boot** para consulta de preços médios de veículos, utilizando a **API da FIPE**.
 
-Select a vehicle type
-Cars
-Motorcycles
-Trucks
-List all available brands
-Select a brand by its code
-List models of the selected brand
-Filter models by a part of the model name
-Select a specific model
-Retrieve FIPE prices for all available years
-🔄 Application Flow
+---
 
-The application follows this workflow:
+## Funcionalidades
 
-1️⃣ The user selects the vehicle type
+* **Consulta Multimodal:** Suporte para Carros, Motos e Caminhões.
+* **Filtro Inteligente:** Permite filtrar modelos por trechos do nome (ex: "Palio").
+* **Histórico de Preços:** Retorna a cotação FIPE para todos os anos disponíveis de um modelo específico.
+* **Fluxo Interativo:** Simula a experiência do site oficial via terminal.
+* **Desserialização Genérica:** Uso de Jackson para converter JSON em objetos Java de forma dinâmica.
 
-car
-motorcycle
-truck
+---
 
-2️⃣ The application requests the API and lists all available brands
+## 🛠️ Tecnologias Utilizadas
 
-3️⃣ The user selects a brand using its code
+* **Java 17+**
+* **Spring Boot 3.x**
+* **Maven** (Gerenciamento de dependências)
+* **Jackson** (Processamento de JSON)
+* **Java Streams & Collections** (Manipulação e filtragem de dados)
 
-4️⃣ The application lists all models from that brand
+---
 
-5️⃣ The user types a part of the model name
+## 🔄 Fluxo da Aplicação
 
-Example:
+1. **Seleção de Tipo:** O usuário escolhe entre `Carros`, `Motos` ou `Caminhões`.
+2. **Listagem de Marcas:** O sistema consome a API e exibe as marcas disponíveis.
+3. **Seleção de Marca:** O usuário insere o código da marca desejada.
+4. **Filtro de Modelos:** O usuário digita um trecho do nome do veículo para filtrar as opções.
+5. **Seleção de Modelo:** O usuário escolhe o código do modelo específico.
+6. **Resultado Final:** A aplicação exibe os preços de cada ano/combustível cadastrado para aquele modelo.
 
-PALIO
+---
 
-6️⃣ The application filters and shows only models that contain the typed term
+## 📂 Estrutura do Projeto
 
-7️⃣ The user selects a specific model using its code
+```text
+src/main/java/com/ghdev/fipeconsultant
+├─ model       # Records e Classes de domínio (Brand, Model, Vehicle)
+├─ service     # Consumo da API (HttpClient) e Conversor de Dados (Jackson)
+├─ principal   # Lógica principal de interação com o usuário
+└─ main        # Ponto de entrada da aplicação
+🌐 API Utilizada
+O projeto consome a FIPE API de Deivid Fortuna, utilizando os seguintes endpoints:
 
-8️⃣ The application retrieves FIPE price data for all available years of that model
+.../{tipo}/marcas
 
-🌐 API Used
+.../{tipo}/marcas/{codMarca}/modelos
 
-This project consumes the public FIPE API:
+.../{tipo}/marcas/{codMarca}/modelos/{codModelo}/anos
 
-https://deividfortuna.github.io/fipe/
+🚀 Como Executar
+Clonar o repositório:
 
-Endpoints used
+Bash
+git clone [https://github.com/seu-usuario/fipe-consultant.git](https://github.com/seu-usuario/fipe-consultant.git)
+Importar na IDE: Abra o projeto no IntelliJ IDEA ou VS Code.
 
-List brands
+Rodar a aplicação: Execute a classe Main.java.
 
-https://parallelum.com.br/fipe/api/v1/carros/marcas
-https://parallelum.com.br/fipe/api/v1/motos/marcas
-https://parallelum.com.br/fipe/api/v1/caminhoes/marcas
+Interagir: Siga as instruções que aparecerão no terminal.
 
-List models
+📊 Exemplo de Saída
+Plaintext
+Marca Selecionada: Fiat
+Modelo Selecionado: Palio Weekend Stile 1.6 mpi 16V 4p
+Avaliações por ano encontradas:
+   - 2003 Gasolina: R$ 18.200,00
+   - 2004 Gasolina: R$ 19.000,00
+   - 2005 Gasolina: R$ 20.100,00
+📫 Desenvolvido por GHDev
 
-https://parallelum.com.br/fipe/api/v1/carros/marcas/{brandCode}/modelos
 
-List available years
-
-https://parallelum.com.br/fipe/api/v1/carros/marcas/{brandCode}/modelos/{modelCode}/anos
-
-Get FIPE price
-
-https://parallelum.com.br/fipe/api/v1/carros/marcas/{brandCode}/modelos/{modelCode}/anos/{yearCode}
-🧠 Concepts Practiced
-
-During the development of this project, the following concepts were applied:
-
-REST API consumption
-JSON deserialization using Jackson
-Java Collections (List)
-Stream API filtering
-Loops and control structures
-Domain modeling
-User interaction through the terminal
-📂 Project Structure
-src
- ├── model
- │    ├── Brand.java
- │    ├── Model.java
- │    └── Vehicle.java
- │
- ├── service
- │    ├── ApiConsumer.java
- │    └── DataConverter.java
- │
- └── main
-      └── Main.java
-▶️ How to Run the Project
-
-2️⃣ Open the project in your IDE (IntelliJ or VS Code)
-
-3️⃣ Run the main class
-
-JavaScreenmatchWebApplication
-
-4️⃣ Interact with the application through the terminal
-
-📊 Example Output
-Selected brand: Fiat
-
-Selected model: Palio Weekend Stile 1.6 mpi 16V 4p
-
-Available price evaluations:
-
-2003 - R$ 18,200
-2004 - R$ 19,000
-2005 - R$ 20,100
-🎯 Project Purpose
-
-This project was developed to practice API consumption, data manipulation, and backend development using Java, simulating a real-world vehicle price consultation system.
+http://googleusercontent.com/interactive_content_block/0
